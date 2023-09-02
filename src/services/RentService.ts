@@ -12,9 +12,11 @@ export class RentService {
 
   async execute(body: Object): Promise<any> {
     try {
+      
+      console.log(`> execute rent service... | ${new Date()}`)
+
       const timestamp = new Date().getTime();
       const filename = `${timestamp}.json`;
-      const filepath = `${this.path}/Input/${filename}`;
 
       writeFileSync(`${this.path}/Input/${filename}`, JSON.stringify(body));
 

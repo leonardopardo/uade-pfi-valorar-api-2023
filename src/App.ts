@@ -33,8 +33,8 @@ class App {
     // initialize resources
     this.initializeRoutes();
 
-    const PostgresDataSource: DataSource = PsqlDatasource;
-    PostgresDataSource.initialize();
+    this.initializeDatabase();
+
   }
 
   private initializeRoutes() {
@@ -44,6 +44,12 @@ class App {
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
   
+  }
+
+  private initializeDatabase() {
+    // initialize database
+    const PostgresDataSource: DataSource = PsqlDatasource;
+    PostgresDataSource.initialize();
   }
 
   public listen(): void {
