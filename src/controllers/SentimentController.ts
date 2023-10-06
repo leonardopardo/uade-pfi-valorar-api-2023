@@ -1,9 +1,15 @@
 import { Request, Response } from "express";
+import { SentimentService } from "../services/SentimentService";
 
 
 export class SentimentController {
+
+  private static service: SentimentService = new SentimentService();
+
   async index(req: Request, res: Response): Promise<any> {
     try {
+      const result = await SentimentController.service.get_news();
+      console.log(result)
       const static_object = {
         result: "Negative",
         examples: ["https://www.clarin.com/arq/construccion/anos-vigencia-ley-alquileres-1-000-departamentos-oferta-capital_0_Uno1qarEkO.html",

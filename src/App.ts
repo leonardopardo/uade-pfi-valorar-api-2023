@@ -2,7 +2,7 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as cors from "cors";
 import { DataSource } from "typeorm";
-import { PsqlDatasource } from "./MyDataSoure";
+import { MongoDBDatasource, PsqlDatasource } from "./MyDataSoure";
 import bodyParser = require("body-parser");
 import path = require("path");
 import "reflect-metadata";
@@ -50,6 +50,9 @@ class App {
     // initialize database
     const PostgresDataSource: DataSource = PsqlDatasource;
     PostgresDataSource.initialize();
+
+    const MongoDataSource: DataSource = MongoDBDatasource;
+    MongoDataSource.initialize()
   }
 
   public listen(): void {

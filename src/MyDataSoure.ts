@@ -21,4 +21,16 @@ const PsqlDatasource = new DataSource({
   subscribers: ["src/subscriber/**/*.ts"],
 });
 
-export { PsqlDatasource }
+const MongoDBDatasource = new DataSource({
+  type: "mongodb",
+  host: process.env.MONGO_HOST,
+  port: parseInt(process.env.MONGO_PORT),
+  database: process.env.MONGO_DATABASE,
+  username: process.env.MONGO_USERNAME,
+  password: process.env.MONGO_PASSWORD,
+  useUnifiedTopology: true,
+  entities: ["src/Models/*.mdb.ts"],
+  synchronize: false
+})
+
+export { PsqlDatasource, MongoDBDatasource }
