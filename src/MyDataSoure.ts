@@ -2,6 +2,7 @@ import "reflect-metadata";
 import * as dotenv from 'dotenv';
 import path = require('path');
 import { DataSource } from "typeorm";
+import { Sentiment } from "./models/Sentiment.mdb";
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env')
@@ -29,7 +30,7 @@ const MongoDBDatasource = new DataSource({
   username: process.env.MONGO_USERNAME,
   password: process.env.MONGO_PASSWORD,
   useUnifiedTopology: true,
-  entities: ["src/Models/*.mdb.ts"],
+  entities: [Sentiment],
   synchronize: false
 })
 

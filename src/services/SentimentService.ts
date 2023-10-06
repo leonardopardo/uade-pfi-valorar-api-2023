@@ -1,10 +1,13 @@
+import { Sentiment } from "../models/Sentiment.mdb";
+import { MongoDBDatasource } from "../MyDataSoure";
 
 export class SentimentService{
-    
-    async get_news(): Promise<any> {
+
+    private static sentimentRepository = MongoDBDatasource.getRepository(Sentiment)
+
+    async findAll(): Promise<Sentiment[]> {
         try {
-    
-          return "Hi";
+            return SentimentService.sentimentRepository.find();
         } catch (err) {
           console.log(err);
         }
