@@ -9,7 +9,6 @@ import "reflect-metadata";
 import { SentimentRouter } from "./routes/SentimentRouter";
 import { RentRouter } from "./routes/RentRouter";
 
-
 class App {
   public app: express.Application;
   public corsOptions: cors.CorsOptions;
@@ -33,20 +32,42 @@ class App {
     this.initializeRoutes();
 
     this.initializeDatabase();
-
   }
 
   private initializeRoutes() {
     this.app.use(bodyParser.json());
-    this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-      console.log(`Received ${req.method} request from ${req.ip} to ${req.originalUrl}`);
-      next(); // Continue processing the request
-    });
+    this.app.use(
+      (
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) => {
+        console.log(
+          `Received ${req.method} request from ${req.ip} to ${req.originalUrl}`
+        );
+        next(); // Continue processing the request
+      }
+    );
     this.app.use("/", this.router);
-    
+    this.app.use(
+      cors({
+        cors: {
+          allowedHeaders: [
+            "Origin",
+            "X-Requested-With",
+            "Content-Type",
+            "Accept",
+            "X-Access-Token",
+          ],
+          credentials: true,
+          methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+          preflightContinue: false,
+        },
+      })
+    );
+
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
-  
   }
 
   private initializeDatabase() {
@@ -55,7 +76,7 @@ class App {
     PostgresDataSource.initialize();
 
     const MongoDataSource: DataSource = MongoDBDatasource;
-    MongoDataSource.initialize()
+    MongoDataSource.initialize();
   }
 
   public listen(): void {
