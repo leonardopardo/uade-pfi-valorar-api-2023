@@ -10,8 +10,6 @@ import { SentimentRouter } from "./routes/SentimentRouter";
 import { RentRouter } from "./routes/RentRouter";
 
 
-
-
 class App {
   public app: express.Application;
   public corsOptions: cors.CorsOptions;
@@ -44,7 +42,7 @@ class App {
       console.log(`Received ${req.method} request from ${req.ip} to ${req.originalUrl}`);
       next(); // Continue processing the request
     });
-    this.app.use("/api/v1", this.router);
+    this.app.use("/", this.router);
     
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
