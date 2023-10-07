@@ -11,6 +11,7 @@ import { RentRouter } from "./routes/RentRouter";
 
 
 
+
 class App {
   public app: express.Application;
   public corsOptions: cors.CorsOptions;
@@ -39,6 +40,10 @@ class App {
 
   private initializeRoutes() {
     this.app.use(bodyParser.json());
+    this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+      console.log(`Received ${req.method} request from ${req.ip} to ${req.originalUrl}`);
+      next(); // Continue processing the request
+    });
     this.app.use("/api", this.router);
     
     new SentimentRouter().routes(this.router);
