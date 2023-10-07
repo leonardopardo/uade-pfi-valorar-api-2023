@@ -31,6 +31,7 @@ export class SentimentController {
 
   async index(req: Request, res: Response): Promise<any> {
     try {
+      console.log("Execute sentiment service")
       const news = await SentimentController.service.findAll();
 
       // Extraemos los URLs de las noticias

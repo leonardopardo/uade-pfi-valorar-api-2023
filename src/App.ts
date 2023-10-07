@@ -39,7 +39,7 @@ class App {
 
   private initializeRoutes() {
     this.app.use(bodyParser.json());
-    this.app.use("/", this.router);
+    this.app.use("/api", this.router);
     
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
