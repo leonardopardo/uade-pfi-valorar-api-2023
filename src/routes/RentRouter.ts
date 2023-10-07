@@ -10,6 +10,6 @@ export class RentRouter {
   }
 
   public routes(router: Router): void {
-    router.get(`${this.prefix}`, this.controller.index);
+    router.post(`${this.prefix}`, this.controller.index);
   }
 }
