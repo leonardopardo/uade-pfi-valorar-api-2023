@@ -44,7 +44,7 @@ class App {
       console.log(`Received ${req.method} request from ${req.ip} to ${req.originalUrl}`);
       next(); // Continue processing the request
     });
-    this.app.use("/", this.router);
+    this.app.use("/api/v1", this.router);
     
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
