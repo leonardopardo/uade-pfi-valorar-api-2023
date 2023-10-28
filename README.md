@@ -24,7 +24,7 @@ Se tienen 2 endpoints principales a ser utilizados, estos se describen debajo.
 #### POST /rent
 Retorna la estimación de precio de alquiler a partir de ciertas variables. Ejemplo de ejecución con CURL hacia entorno local:
 ```
-curl --location 'http://localhost:9000/rent' \
+curl --location 'https://valorar.ar/api/rent' \
 --header 'Content-Type: application/json' \
 --data '{
     "caracteristicas": ["balcony"],
@@ -44,5 +44,5 @@ curl --location 'http://localhost:9000/rent' \
 #### GET /sentiment
 Retorna el análisis de sentimiento de mercado acompañado de las noticias recopiladas en la última semana. Las cuales fueron utilizadas para la opinión. Ejemplo de ejecución con CURL hacia entorno local:
 ```
-curl --location 'http://localhost:9000/sentiment'
+curl --location 'https://valorar.ar/api/sentiment'
 ```
