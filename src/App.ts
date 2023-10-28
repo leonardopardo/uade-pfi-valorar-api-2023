@@ -49,22 +49,7 @@ class App {
       }
     );
     this.app.use("/", this.router);
-    this.app.use(
-      cors({
-        cors: {
-          allowedHeaders: [
-            "Origin",
-            "X-Requested-With",
-            "Content-Type",
-            "Accept",
-            "X-Access-Token",
-          ],
-          credentials: true,
-          methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-          preflightContinue: false,
-        },
-      })
-    );
+    this.app.use(cors());
 
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
