@@ -1,4 +1,4 @@
-import { Sentiment } from "../models/Sentiment.mdb";
+import { Sentiment } from "../models/Sentiment";
 import { MongoDBDatasource } from "../MyDataSoure";
 
 export class SentimentService {

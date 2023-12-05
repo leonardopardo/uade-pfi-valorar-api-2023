@@ -1,4 +1,4 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import { Column } from 'typeorm';
 
 export class Usage {
     @Column()

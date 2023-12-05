@@ -2,7 +2,7 @@ import "reflect-metadata";
 import * as dotenv from 'dotenv';
 import path = require('path');
 import { DataSource } from "typeorm";
-import { Sentiment } from "./models/Sentiment.mdb";
+import { Sentiment } from "./models/Sentiment";
 import { User } from "./models/UserMgmt/User.mdb";
 
 dotenv.config({
@@ -35,4 +35,13 @@ const MongoDBDatasource = new DataSource({
   synchronize: false
 })
 
-export { PsqlDatasource, MongoDBDatasource }
+const TestDataSource = new DataSource({
+  type: "sqlite",
+  database: ":memory:",
+  dropSchema: true,
+  entities: [],
+  synchronize: true,
+  logging: false
+});
+
+export { PsqlDatasource, MongoDBDatasource, TestDataSource }

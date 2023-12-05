@@ -11,5 +11,7 @@ export class AuthRouter {
 
   public routes(router: Router): void {
     router.post(`${this.prefix}/login`, this.controller.authenticate);
+    router.post(`${this.prefix}/restore`, this.controller.restorePassword);
+    router.post(`${this.prefix}/reset`, this.controller.resetPassword);
   }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { SentimentService } from "../services/SentimentService";
-import { Sentiment } from "../models/Sentiment.mdb";
+import { Sentiment } from "../models/Sentiment";
 
 export class SentimentController {
 

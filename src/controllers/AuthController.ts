@@ -6,8 +6,25 @@ import * as jwt from 'jsonwebtoken';
 
 
 export class AuthController {
+  
   private static service: UserService = new UserService();
 
+  async resetPassword(req: Request, res: Response): Promise<Response> {
+    try{
+      return res.status(200).json({message: "reset"});
+    }catch(err){
+      return res.status(500).json({ error: err.message });
+    }
+  }
+
+  async restorePassword(req: Request, res: Response): Promise<Response> {
+    try{
+      return res.status(200).json({message: "restore"});
+    }catch(err){
+      return res.status(500).json({ error: err.message });
+    }
+  }
+  
   async authenticate(req: Request, res: Response): Promise<Response> {
     try {
       const { username, password } = req.body;

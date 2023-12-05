@@ -1,11 +1,11 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import { Entity, ObjectId, ObjectIdColumn, Column } from 'typeorm';
 import { Usage } from './Usage.mdb';
 import { Request } from './Request.mdb';
 
 @Entity('User')
 export class User {
   @ObjectIdColumn()
-  id: ObjectID;
+  id: ObjectId;
 
   @Column()
   username: string;
