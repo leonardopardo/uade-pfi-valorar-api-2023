@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { RentController } from "../controllers/RentController";
+import { jwtMiddleware } from "../middlewares/jwtMiddleware";
 
 export class RentRouter {
   private controller: RentController;
@@ -11,5 +12,6 @@ export class RentRouter {
 
   public routes(router: Router): void {
     router.post(`${this.prefix}`, this.controller.index);
+    router.post(`${this.prefix}/predict`, jwtMiddleware, this.controller.predict);
   }
 }

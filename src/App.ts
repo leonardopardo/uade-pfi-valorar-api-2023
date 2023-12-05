@@ -8,6 +8,8 @@ import path = require("path");
 import "reflect-metadata";
 import { SentimentRouter } from "./routes/SentimentRouter";
 import { RentRouter } from "./routes/RentRouter";
+import { UserRouter } from "./routes/UserRouter";
+import { AuthRouter } from "./routes/AuthRouter";
 
 class App {
   public app: express.Application;
@@ -53,6 +55,8 @@ class App {
 
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
+    new UserRouter().routes(this.router);
+    new AuthRouter().routes(this.router)
   }
 
   private initializeDatabase() {

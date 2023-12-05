@@ -17,4 +17,16 @@ export class RentController {
         res.status(500).send(err);
     }
   }
+
+  async predict(req: Request, res: Response): Promise<any> {
+    try {
+        const result = {
+          price: parseInt(await RentController.service.executePrediction(req.body)),
+          sentiment: await RentController.sentimentService.getSentiment()
+        } 
+        res.status(200).send(result);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+  }
 }

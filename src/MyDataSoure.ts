@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import path = require('path');
 import { DataSource } from "typeorm";
 import { Sentiment } from "./models/Sentiment.mdb";
+import { User } from "./models/UserMgmt/User.mdb";
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env')
@@ -30,7 +31,7 @@ const MongoDBDatasource = new DataSource({
   username: process.env.MONGO_USERNAME,
   password: process.env.MONGO_PASSWORD,
   useUnifiedTopology: true,
-  entities: [Sentiment],
+  entities: [Sentiment, User],
   synchronize: false
 })
 
