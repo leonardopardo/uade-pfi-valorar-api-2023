@@ -38,7 +38,12 @@ export class SentimentService {
 
   async getSentiment(): Promise<any> {
     try {
+      const d = new Date()
+      const today = new Date()
+      d.setDate(d.getDate() - 14)
       const news = await SentimentService.sentimentRepository.find();
+
+      //const news = await SentimentService.sentimentRepository.find()
       const slice = news.slice(0, 5);
 
       // Extraemos los URLs de las noticias
@@ -49,6 +54,7 @@ export class SentimentService {
 
       // Calculamos el sentimiento en base a las noticias obtenidas
       const result = SentimentService.calculateAverageSentiment(news);
+      console.log(news)
 
       const static_object = {
         result: result,
