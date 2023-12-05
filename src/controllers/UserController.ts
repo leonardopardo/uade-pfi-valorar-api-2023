@@ -31,7 +31,7 @@ export class UserController {
 		}
 	}
 
-	async store(req: Request, res: Response): Promise<any> {
+	async register(req: Request, res: Response): Promise<any> {
 		try{
 			const user: User = await UserController.service.store(req.body);
 			res.status(201).send(user)

@@ -1,3 +1,4 @@
+import { Between } from "typeorm";
 import { Sentiment } from "../models/Sentiment";
 import { MongoDBDatasource } from "../MyDataSoure";
 
@@ -36,31 +37,40 @@ export class SentimentService {
     }
   }
 
+  private static getRandomValuesFromArray<T>(array: T[], numberOfValues: number): T[] {
+    if (numberOfValues > array.length) {
+      throw new Error("Number of values requested exceeds the length of the array");
+    }
+  
+    const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, numberOfValues);
+  }
+
   async getSentiment(): Promise<any> {
     try {
       const d = new Date()
-      const today = new Date()
+    
       d.setDate(d.getDate() - 14)
+      
       const news = await SentimentService.sentimentRepository.find();
-
-      //const news = await SentimentService.sentimentRepository.find()
-      const slice = news.slice(0, 5);
 
       // Extraemos los URLs de las noticias
       const examples = [];
-      for (const obj of slice) {
-        examples.push(obj.url);
+      
+      for (let i of news) {
+        if (i.created_at > d)
+          examples.push(i.url);
       }
 
       // Calculamos el sentimiento en base a las noticias obtenidas
-      const result = SentimentService.calculateAverageSentiment(news);
-      console.log(news)
+      const result = SentimentService.calculateAverageSentiment(examples);
 
       const static_object = {
         result: result,
-        examples: examples,
+        examples: SentimentService.getRandomValuesFromArray(examples, 5),
       };
       return static_object;
+
     } catch (err) {
       console.log(err);
     }

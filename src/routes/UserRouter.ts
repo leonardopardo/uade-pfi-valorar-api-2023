@@ -12,6 +12,6 @@ export class UserRouter {
 
   public routes(router: Router): void {
     router.get(`${this.prefix}`, jwtMiddleware, this.controller.get);
-    router.post(`${this.prefix}`, this.controller.store);
+    router.post(`${this.prefix}`, this.controller.register);
   }
 }

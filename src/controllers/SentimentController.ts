@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { SentimentService } from "../services/SentimentService";
-import { Sentiment } from "../models/Sentiment";
 
 export class SentimentController {
 
@@ -14,5 +13,5 @@ export class SentimentController {
       res.status(500).send(err);
     }
   }
-
+  
 }
