@@ -1,11 +1,11 @@
-import { Entity, ObjectId, ObjectIdColumn, Column } from 'typeorm';
+import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 import { Usage } from './Usage.mdb';
 import { Request } from './Request.mdb';
 
 @Entity('User')
 export class User {
   @ObjectIdColumn()
-  id: ObjectId;
+  id: ObjectID;
 
   @Column()
   username: string;
@@ -13,6 +13,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  name: string;
+  
   @Column()
   company_name: string;
 

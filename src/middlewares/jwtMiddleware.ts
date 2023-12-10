@@ -14,7 +14,6 @@ export function jwtMiddleware(req: Request, res: Response, next: NextFunction): 
         return res.status(401).json({ error: 'Token de autenticación no proporcionado.' });
     }
 
-    
     try {
         const decoded = jwt.verify(token, secretKey) as { userId: string };;
         if (typeof decoded !== 'object' || !decoded.userId) {
@@ -23,7 +22,6 @@ export function jwtMiddleware(req: Request, res: Response, next: NextFunction): 
     } catch (error) {
         return res.status(401).json({ error: 'Token de autenticación inválido.' });
     }
-
 
     next();
 }

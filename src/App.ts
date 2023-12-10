@@ -1,6 +1,6 @@
 import * as express from "express";
-import * as dotenv from "dotenv";
 import * as cors from "cors";
+import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
 import { MongoDBDatasource, PsqlDatasource } from "./MyDataSoure";
 import bodyParser = require("body-parser");
@@ -13,7 +13,6 @@ import { AuthRouter } from "./routes/AuthRouter";
 
 class App {
   public app: express.Application;
-  public corsOptions: cors.CorsOptions;
   public router: express.Router;
 
   constructor() {
@@ -56,7 +55,7 @@ class App {
     new SentimentRouter().routes(this.router);
     new RentRouter().routes(this.router);
     new UserRouter().routes(this.router);
-    new AuthRouter().routes(this.router)
+    new AuthRouter().routes(this.router);
   }
 
   private initializeDatabase() {

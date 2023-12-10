@@ -5,7 +5,6 @@ import { User } from "../models/UserMgmt/User.mdb";
 export class UserController {
 	private static service: UserService = new UserService();
 
-
 	async index(req: Request, res: Response): Promise<any> {
 		try{
 			res.status(201).send("User Index")
@@ -34,12 +33,9 @@ export class UserController {
 	async register(req: Request, res: Response): Promise<any> {
 		try{
 			const user: User = await UserController.service.store(req.body);
-			res.status(201).send(user)
+			res.status(201).send({message: 'Usuario creado correctamente.'})
 		}catch(err){
-			if(err.code === '23505')
-				res.status(400).json({error: 'El email ya existe.'});
-			else
-				res.status(500).json({error: 'Error al crear el usuario.'});
+			res.status(500).json({error: err.message});
 		}
 	}
 }

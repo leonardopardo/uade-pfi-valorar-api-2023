@@ -2,7 +2,6 @@ import { User } from "../models/UserMgmt/User.mdb";
 import * as bcrypt from 'bcryptjs';
 import { MongoDBDatasource } from "../MyDataSoure";
 
-
 export class UserService {
 
     private static repository = MongoDBDatasource.getRepository(User);
@@ -12,8 +11,11 @@ export class UserService {
     }
 
     public async store(data): Promise<User>{
-        const hashedPassword = await this.hashPassword(data.password);
-        data.password = hashedPassword;
+        if(await this.get(data.username))
+            throw new Error("El usuario que intenta crear ya existe.")
+
+        data.password = await this.hashPassword(data.password);
+        
         return await UserService.repository.save(data);
     }
 
