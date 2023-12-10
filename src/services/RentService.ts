@@ -35,8 +35,7 @@ export class RentService {
   async executePrediction(body): Promise<any> {
     try {
       
-      //Agregamos al historial del usuario la consulta
-      await RentService.service.addRequest(body.username, body.data)
+      
 
       console.log(`> execute rent service... | ${new Date()}`)
 
@@ -48,6 +47,9 @@ export class RentService {
       const result = exec.execSync(
         `python3 ${this.path}/predictor.py ${this.path}/Input/${filename}`
       );
+
+      //Agregamos al historial del usuario la consulta
+      await RentService.service.addRequest(body.username, body.data, result.toString())
 
       return result.toString();
     } catch (err) {

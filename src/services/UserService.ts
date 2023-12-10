@@ -19,10 +19,11 @@ export class UserService {
         return await UserService.repository.save(data);
     }
 
-    public async addRequest(username, data): Promise<any>{
+    public async addRequest(username, data, price): Promise<any>{
         const user = await UserService.repository.findOne({where: {username: username}})
         user.usage.usesThisMonth += 1
         data["date"] = new Date()
+        data["price"] = price
         user.history.push(data)
         await UserService.repository.save(user)
     }

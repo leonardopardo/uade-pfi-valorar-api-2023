@@ -37,4 +37,7 @@ export class Request {
 
     @Column()
     localidad: string
+
+    @Column()
+    price: string
 }
