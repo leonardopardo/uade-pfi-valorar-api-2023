@@ -48,7 +48,6 @@ export class AuthController {
   async validateToken(req: Request, res: Response): Promise<Response> {
     try {
       const { token, user } = req.body;
-      console.log(token, user)
       const decoded = jwt.verify(token, "default-secret-key");
       return res.status(200).json({ decoded });
     } catch (err) {
