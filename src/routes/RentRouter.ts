@@ -12,6 +12,6 @@ export class RentRouter {
 
   public routes(router: Router): void {
     router.post(`${this.prefix}`, this.controller.index);
-    router.post(`${this.prefix}/predict`, jwtMiddleware, this.controller.predict);
+    router.post(`${this.prefix}/predict`, this.controller.predict);
   }
 }

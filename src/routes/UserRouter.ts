@@ -11,9 +11,9 @@ export class UserRouter {
   }
 
   public routes(router: Router): void {
-    router.get(`${this.prefix}`, jwtMiddleware, this.controller.get);
+    router.get(`${this.prefix}`, this.controller.get);
     router.post(`${this.prefix}`, this.controller.register);
-    router.post(`${this.prefix}/history`, jwtMiddleware, this.controller.getHistory);
-    router.post(`${this.prefix}/usage`, jwtMiddleware, this.controller.getUsage);
+    router.post(`${this.prefix}/history`, this.controller.getHistory);
+    router.post(`${this.prefix}/usage`, this.controller.getUsage);
   }
 }

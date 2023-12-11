@@ -14,6 +14,6 @@ export class AuthRouter {
     router.post(`${this.prefix}/login`, this.controller.authenticate);
     router.post(`${this.prefix}/restore`, this.controller.restorePassword);
     router.post(`${this.prefix}/reset`, this.controller.resetPassword);
-    router.post(`${this.prefix}/validate`, jwtMiddleware, this.controller.validateToken);
+    router.post(`${this.prefix}/validate`, this.controller.validateToken);
   }
 }

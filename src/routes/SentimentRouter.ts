@@ -12,6 +12,6 @@ export class SentimentRouter {
 
   public routes(router: Router): void {
     router.get(`${this.prefix}`, this.controller.index);
-    router.post(`${this.prefix}/get`, jwtMiddleware, this.controller.index);
+    router.post(`${this.prefix}/get`, this.controller.index);
   }
 }
